@@ -27,6 +27,7 @@ namespace Dračáček
         bool enemyIsCreated;
 
         Enemy _enemy;
+        Player Avatar;
         Main story_main = new Main();
         Doren story_doren = new Doren();
         Var_atra story_var_atra = new Var_atra();
@@ -64,6 +65,19 @@ namespace Dračáček
         }
         public void GoToFight(object sender, RoutedEventArgs e) {
             Area_Fight.IsSelected = true;
+            switch (attack_place.Text)
+            {
+                case "Doren":
+                    enemy_choose = "bog_monster";
+                    break;
+                case "Kaer_Trolde":
+                    enemy_choose = "kaer_trolde_fighter";
+                    break;
+                case "Var_Atra":
+                    enemy_choose = "var_atra_fighter";
+                    break;
+            }
+            Fight(enemy_choose,0,0);
         }
         public void GoToMap(object sender, RoutedEventArgs e)
         {
@@ -72,18 +86,22 @@ namespace Dračáček
         public void GoToDoren(object sender, RoutedEventArgs e)
         {
             Area_Doren.IsSelected = true;
+            attack_place.Text = "Doren";
         }
         public void GoToKaerTrolde(object sender, RoutedEventArgs e)
         {
             Area_Kaer_trolde.IsSelected = true;
+            attack_place.Text = "Kaer_Trolde";
         }
         public void GoToVarAtra(object sender, RoutedEventArgs e)
         {
             Area_Var_atra.IsSelected = true;
+            attack_place.Text = "Var_Atra";
         }
         public void GoToBlackReachIsland(object sender, RoutedEventArgs e)
         {
             Area_Black_reach_island.IsSelected = true;
+            attack_place.Text = "Black_Reach_Island";
         }
         public void Menu(object sender, SelectionChangedEventArgs e)
         {
@@ -91,23 +109,51 @@ namespace Dračáček
         public void CreateEnemy(string enemy_choose) {
             _enemy = new Enemy(enemy_choose);
         }
-        public void playerAttack(int player_attack_type) {
+        public void playerAttack(int player_attack_type)
+        {
 
         }
         public void enemyAttack(int enemy_attack_type)
         {
 
         }
-        public void Fight(string enemy_choose, int player_attack_type, int enemy_attack_type)
+        public void Loot() {
+
+        }
+        public void CheckState()
+        {
+            if (_enemy.hp <= 0) {
+                switch (attack_place.Text) {
+                    case "Doren":
+                        Area_Doren.IsSelected = true;
+                        break;
+                    case "Kaer_Trolde":
+                        Area_Kaer_trolde.IsSelected = true;
+                        break;
+                    case "Var_Atra":
+                        Area_Var_atra.IsSelected = true;
+                        break;
+                    case "Black_Reach_Island":
+                        Area_Black_reach_island.IsSelected = true;
+                        break;
+                }
+                Loot();
+            }
+            else if (Avatar.hp <= 0) {
+
+            }
+        }
+        public void Fight(string _enemy_choose, int player_attack_type, int enemy_attack_type)
         {
             if (enemyIsCreated == false)
             {
-                CreateEnemy(enemy_choose);
+                CreateEnemy(_enemy_choose);
                 enemyIsCreated = true;
             }
             else {
                 playerAttack(player_attack_type);
                 enemyAttack(enemy_attack_type);
+                CheckState();
             }
             
         }

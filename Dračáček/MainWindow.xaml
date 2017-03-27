@@ -48,6 +48,7 @@
             <Grid>
                 <TextBlock x:Name="test_message" Margin="113,36,113,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="151"/>
                 <Button Content="Pokračovat" Click="GoToMap" Margin="207,210,0,0" VerticalAlignment="Top" Height="36" HorizontalAlignment="Left" Width="100"/>
+                <TextBox Margin="378,255,10,10" TextWrapping="Wrap" Text="" x:Name="attack_place" TextAlignment="Center" Visibility="Hidden"/>
             </Grid>
         </TabItem>
 
@@ -68,6 +69,7 @@
                 <Button Content="Obchodník" HorizontalAlignment="Left" Margin="151,227,0,0" VerticalAlignment="Top" Width="95" Height="36"/>
                 <Button Content="Zpět na mapu" Margin="0,227,149,0" VerticalAlignment="Top" Height="36" HorizontalAlignment="Right" Width="95"/>
                 <Button Content="Status" Margin="0,227,30,0" VerticalAlignment="Top" Height="36" HorizontalAlignment="Right" Width="95"/>
+                <TextBox Margin="194,96,194,169" TextWrapping="Wrap" Text="" x:Name="attack_var_atra" TextAlignment="Center"/>
             </Grid>
         </TabItem>
         <TabItem x:Name="Area_Black_reach_island" Header="Ostrov Black Reach" IsEnabled="False">

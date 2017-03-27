@@ -55,6 +55,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Entities\Enemy.cs" />
+    <Compile Include="Story\Announcement.cs" />
     <Compile Include="Story\Black_reach_island.cs" />
     <Compile Include="Story\Kaer_trolde.cs" />
     <Compile Include="Story\Main.cs" />

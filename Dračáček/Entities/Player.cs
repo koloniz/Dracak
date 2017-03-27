@@ -10,8 +10,10 @@ namespace Dračáček.Entities
     {
         public Player(string Name, string Type)
         {
-            hp = 2000;
-            strenght = 250;
+            hp = 1000;
+            ep = 100;
+            strenght = 50;
+            int lvl = 1;
             switch (Type)
             {
                 case "Sorcerer":
@@ -27,8 +29,40 @@ namespace Dračáček.Entities
                     break;
             }
             name = Name;
-            int lvl = 1;
+            
         }
+
+        public void PlayerLevelUp(int level)
+        {
+            switch (level) {
+                case 1:
+                    hp = 2000;
+                    ep = 200;
+                    strenght = 50;
+                    lvl = 2;
+                    break;
+                case 2:
+                    hp = 3000;
+                    ep = 300;
+                    strenght = 50;
+                    lvl = 3;
+                    break;
+                case 3:
+                    hp = 4000;
+                    ep = 400;
+                    strenght = 50;
+                    lvl = 4;
+                    break;
+                case 4:
+                    hp = 5000;
+                    ep = 500;
+                    strenght = 50;
+                    lvl = 5;
+                    break;
+
+            }
+        }
+
         public override string ToString()
         {
             return hp + " " + strenght + " " + spec_ability + " " + name;
