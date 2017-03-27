@@ -1,0 +1,112 @@
+﻿<Window x:Class="Dračáček.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Dračáček"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="375" Width="525">
+    <TabControl SelectionChanged="Menu">
+
+
+
+
+        <TabItem x:Name="Welcome_page" Header="Welcome" IsEnabled="False">
+            <Grid>
+                <TextBlock Margin="213,27,213,245.8" TextWrapping="Wrap" Text="Vítej ve hře" TextAlignment="Center"/>
+                <TextBlock Margin="176,54,176,0" TextWrapping="Wrap" Text="Dračí doupě" FontSize="25" TextAlignment="Center" VerticalAlignment="Top" Height="51"/>
+                <Button Content="Nová hra" x:Name="gay" Click="GoToStart" Margin="200,110,200,144.8"/>
+                <Button Content="Pokračovat" IsEnabled="False"  Margin="200,170,200,84.8"/>
+                <Button Content="O hře"  Margin="200,230,200,24.8"/>
+            </Grid>
+        </TabItem>
+
+
+
+        <TabItem x:Name="Character_choice" Header="Character" IsEnabled="False">
+            <Grid>
+                <TextBlock Margin="177,29,177,234.8" TextWrapping="Wrap" Text="Vyber si typ postavy" TextAlignment="Center"/>
+                <Button Content="Válečník" Click="Choose_warrior" Margin="52,170,348,84.8"/>
+                <Button Content="Sorcerer" Click="Choose_sorcerer" Margin="200,170,200,84.8"/>
+                <Button Content="Lučištník" Click="Choose_archer" Margin="348,170,52,84.8"/>
+            </Grid>
+        </TabItem>
+
+
+
+        <TabItem x:Name="Name_choice" Header="Name" IsEnabled="False">
+            <Grid>
+                <TextBlock Margin="177,29,177,209" TextWrapping="Wrap" Text="Zadej svoji přezdívku, poznáš podle ní svoji uloženou hru ;)" TextAlignment="Center"/>
+                <TextBox Margin="194,96,194,169" TextWrapping="Wrap" Text="Přezdívka" x:Name="nick_text" TextAlignment="Center"/>
+                <Button Content="Do hry!" Click="Start_new_game" Margin="200,168,200,86.8"/>
+            </Grid>
+        </TabItem>
+
+
+
+        <TabItem x:Name="Story" Header="Story" IsEnabled="False">
+            <Grid>
+                <TextBlock x:Name="test_message" Margin="113,36,113,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="151"/>
+                <Button Content="Pokračovat" Click="GoToMap" Margin="207,210,0,0" VerticalAlignment="Top" Height="36" HorizontalAlignment="Left" Width="100"/>
+            </Grid>
+        </TabItem>
+
+        <TabItem x:Name="Area_Doren" Header="Doren" IsEnabled="False">
+            <Grid>
+
+
+            </Grid>
+        </TabItem>
+        <TabItem x:Name="Area_Kaer_trolde" Header="Kaer Trolde" IsEnabled="False">
+            <Grid>
+
+            </Grid>
+        </TabItem>
+        <TabItem x:Name="Area_Var_atra" Header="Var Atra" IsEnabled="False">
+            <Grid>
+                <Button Content="Do arény!" Click="GoToFight" HorizontalAlignment="Left" Margin="30,227,0,0" VerticalAlignment="Top" Width="95" Height="36"/>
+                <Button Content="Obchodník" HorizontalAlignment="Left" Margin="151,227,0,0" VerticalAlignment="Top" Width="95" Height="36"/>
+                <Button Content="Zpět na mapu" Margin="0,227,149,0" VerticalAlignment="Top" Height="36" HorizontalAlignment="Right" Width="95"/>
+                <Button Content="Status" Margin="0,227,30,0" VerticalAlignment="Top" Height="36" HorizontalAlignment="Right" Width="95"/>
+            </Grid>
+        </TabItem>
+        <TabItem x:Name="Area_Black_reach_island" Header="Ostrov Black Reach" IsEnabled="False">
+            <Grid>
+
+            </Grid>
+        </TabItem>
+
+        <TabItem x:Name="Map" Header="" IsEnabled="False">
+            <Grid>
+                <TextBlock Margin="177,29,177,234.8" TextWrapping="Wrap" Text="Tak kam to bude?" TextAlignment="Center"/>
+                <Button Content="Do Dorenu" Click="GoToDoren" HorizontalAlignment="Left" Margin="30,227,0,0" VerticalAlignment="Top" Width="95" Height="36"/>
+                <Button Content="Do Kaer Trolde" Click="GoToKaerTrolde" HorizontalAlignment="Left" Margin="151,227,0,0" VerticalAlignment="Top" Width="95" Height="36"/>
+                <Button Content="Do Var Atra" Click="GoToVarAtra" Margin="0,227,149,0" VerticalAlignment="Top" Height="36" HorizontalAlignment="Right" Width="95"/>
+                <Button Content="Na Ostrov B. R." Click="GoToBlackReachIsland" Margin="0,227,30,0" VerticalAlignment="Top" Height="36" HorizontalAlignment="Right" Width="95"/>
+            </Grid>
+        </TabItem>
+
+        <TabItem x:Name="Area_Fight" Header="Fight" IsEnabled="False">
+            <Grid>
+                <TextBlock Margin="177,33,177,242" TextWrapping="Wrap" x:Name="player_name" Text="" TextAlignment="Center"/>
+                <TextBlock Margin="177,61,177,210" TextWrapping="Wrap" Text="VS" FontSize="19" TextAlignment="Center"/>
+                <TextBlock Margin="177,95,177,180" TextWrapping="Wrap" x:Name="enemy_name" Text="" TextAlignment="Center"/>
+                <TextBlock Margin="177,147,177,64" TextWrapping="Wrap" x:Name="fight_announcer" Text="" TextAlignment="Center"/>
+                <TextBlock Margin="330,31,24,180" TextWrapping="Wrap" x:Name="enemy_status" Text="" TextAlignment="Center"/>
+                <TextBlock Margin="25,33,329,178" TextWrapping="Wrap" x:Name="player_stats" Text="" TextAlignment="Center"/>
+                <TextBlock Margin="24,185,329,95" TextWrapping="Wrap" Text="Ty" TextAlignment="Center"/>
+                <TextBlock Margin="330,185,24,98" TextWrapping="Wrap" Text="Nepřítel" TextAlignment="Center"/>
+                <ProgressBar HorizontalAlignment="Left" Height="10" x:Name="player_health" Value="500" Minimum="0" Maximum="500" Foreground="#00cc00" Margin="52,226,0,0" VerticalAlignment="Top" Width="100"/>
+                <ProgressBar HorizontalAlignment="Left" Height="10" x:Name="player_endurance" Value="500" Foreground="#1a1aff" Margin="52,246,0,0" VerticalAlignment="Top" Width="100"/>
+                <ProgressBar HorizontalAlignment="Right" Height="10" x:Name="enemy_health" Value="500" Minimum="0" Maximum="500" Foreground="#00cc00" Margin="0,226,52,0" VerticalAlignment="Top" Width="100"/>
+                <ProgressBar Height="10" x:Name="enemy_endurance" Value="500" Minimum="0" Maximum="500" Foreground="#1a1aff" Margin="0,246,52,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="100"/>
+            </Grid>
+        </TabItem>
+
+        <TabItem x:Name="Kok" Header="" IsEnabled="False">
+            <Grid>
+
+            </Grid>
+        </TabItem>
+    </TabControl>
+</Window>
