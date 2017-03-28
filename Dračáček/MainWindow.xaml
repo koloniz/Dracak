@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dračáček"
         mc:Ignorable="d"
-        Title="MainWindow" Height="375" Width="525">
+        Title="MainWindow" MaxHeight="375" MaxWidth="525" MinHeight="375" MinWidth="525" Height="551.6" Width="761.4">
     <TabControl SelectionChanged="Menu">
 
 
@@ -47,20 +47,25 @@
         <TabItem x:Name="Story" Header="Story" IsEnabled="False">
             <Grid>
                 <TextBlock x:Name="test_message" Margin="113,36,113,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="151"/>
-                <Button Content="Pokračovat" Click="GoToMap" Margin="207,210,0,0" VerticalAlignment="Top" Height="36" HorizontalAlignment="Left" Width="100"/>
+                <Button Content="Pokračovat" x:Name="story_continue_button" Click="GoToMap" Margin="207,210,0,0" VerticalAlignment="Top" Height="36" HorizontalAlignment="Left" Width="100"/>
                 <TextBox Margin="378,255,10,10" TextWrapping="Wrap" Text="" x:Name="attack_place" TextAlignment="Center" Visibility="Hidden"/>
             </Grid>
         </TabItem>
 
         <TabItem x:Name="Area_Doren" Header="Doren" IsEnabled="False">
             <Grid>
-
-
+                <Button Content="Prozkoumat" Click="GoToFight" HorizontalAlignment="Left" Margin="30,227,0,0" VerticalAlignment="Top" Width="95" Height="36"/>
+                <Button Content="Zpět na mapu" Margin="210,227,210,0" VerticalAlignment="Top" Height="36"/>
+                <Button Content="Status" Margin="0,227,30,0" VerticalAlignment="Top" Height="36" HorizontalAlignment="Right" Width="95"/>
+                <TextBox Margin="194,96,194,169" TextWrapping="Wrap" Text="" x:Name="attack_doren" TextAlignment="Center"/>
             </Grid>
         </TabItem>
         <TabItem x:Name="Area_Kaer_trolde" Header="Kaer Trolde" IsEnabled="False">
             <Grid>
-
+                <Button Content="Na Turnaj!" Click="GoToFight" HorizontalAlignment="Left" Margin="30,227,0,0" VerticalAlignment="Top" Width="95" Height="36"/>
+                <Button Content="Zpět na mapu" Margin="210,227,210,0" VerticalAlignment="Top" Height="36"/>
+                <Button Content="Status" Margin="0,227,30,0" VerticalAlignment="Top" Height="36" HorizontalAlignment="Right" Width="95"/>
+                <TextBox Margin="194,96,194,169" TextWrapping="Wrap" Text="" x:Name="attack_kaer_trolde" TextAlignment="Center"/>
             </Grid>
         </TabItem>
         <TabItem x:Name="Area_Var_atra" Header="Var Atra" IsEnabled="False">
@@ -74,7 +79,11 @@
         </TabItem>
         <TabItem x:Name="Area_Black_reach_island" Header="Ostrov Black Reach" IsEnabled="False">
             <Grid>
-
+                <Button Content="Harpyje" Click="GoToFight" HorizontalAlignment="Left" Margin="30,227,0,0" VerticalAlignment="Top" Width="95" Height="36"/>
+                <Button Content="Gryf" HorizontalAlignment="Left" Margin="151,227,0,0" VerticalAlignment="Top" Width="95" Height="36"/>
+                <Button Content="Ježibaba" Margin="0,227,149,0" VerticalAlignment="Top" Height="36" HorizontalAlignment="Right" Width="95"/>
+                <Button Content="Přerostlý krab" Margin="0,227,30,0" VerticalAlignment="Top" Height="36" HorizontalAlignment="Right" Width="95"/>
+                <TextBox Margin="194,96,194,169" TextWrapping="Wrap" Text="" x:Name="attack_black_reach_island" TextAlignment="Center"/>
             </Grid>
         </TabItem>
 
@@ -85,6 +94,10 @@
                 <Button Content="Do Kaer Trolde" Click="GoToKaerTrolde" HorizontalAlignment="Left" Margin="151,227,0,0" VerticalAlignment="Top" Width="95" Height="36"/>
                 <Button Content="Do Var Atra" Click="GoToVarAtra" Margin="0,227,149,0" VerticalAlignment="Top" Height="36" HorizontalAlignment="Right" Width="95"/>
                 <Button Content="Na Ostrov B. R." Click="GoToBlackReachIsland" Margin="0,227,30,0" VerticalAlignment="Top" Height="36" HorizontalAlignment="Right" Width="95"/>
+                <ProgressBar Height="19" x:Name="doren_main_progress"  Value="0" Minimum="0" Maximum="10" Foreground="#00cc00" Margin="30,271,389,0" VerticalAlignment="Top"/>
+                <ProgressBar Height="19" x:Name="kaer_trolde_main_progress"  Value="0" Minimum="0" Maximum="10" Foreground="#00cc00" Margin="151,271,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="95"/>
+                <ProgressBar Height="19" x:Name="var_atra_main_progress"  Value="0" Minimum="0" Maximum="10" Foreground="#00cc00" Margin="0,271,149,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="95"/>
+                <ProgressBar Height="19" x:Name="black_reach_island_main_progress"  Value="0" Minimum="0" Maximum="4" Foreground="#00cc00" Margin="0,271,30,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="95"/>
             </Grid>
         </TabItem>
 
@@ -102,6 +115,35 @@
                 <ProgressBar HorizontalAlignment="Left" Height="10" x:Name="player_endurance" Value="500" Foreground="#1a1aff" Margin="52,246,0,0" VerticalAlignment="Top" Width="100"/>
                 <ProgressBar HorizontalAlignment="Right" Height="10" x:Name="enemy_health" Value="500" Minimum="0" Maximum="500" Foreground="#00cc00" Margin="0,226,52,0" VerticalAlignment="Top" Width="100"/>
                 <ProgressBar Height="10" x:Name="enemy_endurance" Value="500" Minimum="0" Maximum="500" Foreground="#1a1aff" Margin="0,246,52,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="100"/>
+                <Button x:Name="strong_attack" Click="strongAttack" Content="" Margin="63,269,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="80"/>
+                <Button x:Name="weak_attack" Click="weakAttack" Content="" Margin="0,269,63,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="80"/>
+                <Button x:Name="heal" Click="dodgeHeal" Content="" Margin="218,269,216,0" VerticalAlignment="Top"/>
+            </Grid>
+        </TabItem>
+
+        <TabItem x:Name="vendor" Header="Vendor" IsEnabled="False">
+            <Grid>
+                <Button x:Name="backToVarAtra" Content="Zpět do města" Margin="126,256,292,0" VerticalAlignment="Top" Height="33"/>
+                <Button x:Name="buyArmor" IsEnabled="False"  Content="Koupit brnění" Margin="292,256,126,0" VerticalAlignment="Top" Height="33"/>
+                <TextBlock Margin="169,29,152,185" TextWrapping="Wrap" Text="Zde si můžeš koupit kus brnění nekonečna. Musíš však nejdřívě dokončit všechny zápasy ve městě." TextAlignment="Center"/>
+                <TextBlock Margin="190,174,190,103" TextWrapping="Wrap" Text="Progress" TextAlignment="Center"/>
+                <ProgressBar Height="14" x:Name="var_atra_progress" Value="0" Minimum="0" Maximum="500" Foreground="#00cc00" Margin="112,202,112,0" VerticalAlignment="Top"/>
+            </Grid>
+        </TabItem>
+
+        <TabItem x:Name="Status" Header="Status" IsEnabled="False">
+            <Grid>
+                <TextBlock FontWeight="bold" Margin="10,23,311,254" TextWrapping="Wrap" Text="Avatar" TextAlignment="Center"/>
+                <TextBlock Margin="10,46,311,168" x:Name="player_info" TextWrapping="Wrap" Text="" TextAlignment="Center"/>
+                <TextBlock FontWeight="bold" Margin="229,28,216,253" TextWrapping="Wrap" Text="Doren" TextAlignment="Center" RenderTransformOrigin="0.548,0.995"/>
+                <ProgressBar Height="19" x:Name="status_doren_progress"  Value="0" Minimum="0" Maximum="500" Foreground="#00cc00" Margin="302,27,25,0" VerticalAlignment="Top" ValueChanged="status_doren_progress_ValueChanged"/>
+                <TextBlock FontWeight="bold" Margin="229,67,216,214" TextWrapping="Wrap" Text="Var atra" TextAlignment="Center"/>
+                <ProgressBar Height="19" x:Name="status_var_atra_progress"  Value="0" Minimum="0" Maximum="500" Foreground="#00cc00" Margin="302,67,25,0" VerticalAlignment="Top"/>
+                <TextBlock FontWeight="bold" Margin="229,0,216,170" TextWrapping="Wrap" Text="Kaer Trolde" TextAlignment="Center" Height="19" VerticalAlignment="Bottom"/>
+                <ProgressBar Height="19" x:Name="status_kaer_trolde_progress"  Value="0" Minimum="0" Maximum="500" Foreground="#00cc00" Margin="302,111,25,0" VerticalAlignment="Top"/>
+                <TextBlock FontWeight="bold" Margin="229,0,212,126" TextWrapping="Wrap" Text="Var atra" TextAlignment="Center" Height="19" VerticalAlignment="Bottom"/>
+                <ProgressBar Height="19" x:Name="status_black_reach_island_progress"  Value="0" Minimum="0" Maximum="500" Foreground="#00cc00" Margin="302,155,25,0" VerticalAlignment="Top"/>
+                <Button x:Name="backToCity" Content="Zpět do města" Margin="210,257,210,0" VerticalAlignment="Top" Height="33"/>
             </Grid>
         </TabItem>
 
